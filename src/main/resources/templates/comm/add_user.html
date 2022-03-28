@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册页</title>
+</head>
+<body style="background-color: #223865;">
+<form style="background-color: #3471ff;position:absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);  "
+    action="/add/add" method="get"
+>
+    <table >
+        <tr>
+            <td>用户名</td>
+            <td><input id="username" type="text"></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td><input id="password" type="password"></td>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td><input id="email" type="email"></td>
+        </tr>
+        <tr>
+            <td>zhu</td>
+            <td><button type="submit" >注册</button></td>
+<!--            <td><button onclick="checkUname()" >注册222</button></td>-->
+<!--            <td><button type="submit" onclick="addUser()">提交信息进行注册</button></td>-->
+<!--            <td><button type="submit" onclick="addUser()">提交信息进行注册</button></td>-->
+        </tr>
+    </table>
+</form>
+<script th:src="@{/back/plugins/tagsinput/jquery.tagsinput.min.js}"></script>
+<script src="jquery.js"></script>
+<script>
+    function checkUname(){
+        console.log("checking name........")
+        // 获取输入框中的内容
+        if(null == $("#username").val() || '' == $("#username").val()){
+            $("#username").text("用户名不能为空");
+            return;
+        }
+        $("#username").text("");
+        // 通过jQuery.ajax() 发送异步请求
+        $.ajax(
+            {
+                type:"POST",// 请求的方式 GET  POST
+                url:"localhost/add/add", // 请求的后台服务的路径
+                data:"uname="+123,// 提交的参数
+                success:function(info){ // 响应成功执行的函数
+                    alert("resp");
+                    // $("#username").text(info)
+                }
+            }
+        )
+    }
+
+    function addUser() {
+       var unameDOM = document.getElementById("username");
+       var unamePass = document.getElementById("password");
+       var unameEmail = document.getElementById("email");
+       submit = new XMLHttpRequest();
+       submit.open("POST","localhost/user/addUser")
+       xhr.send(null);
+
+   }
+</script>
+</body>
+</html>
